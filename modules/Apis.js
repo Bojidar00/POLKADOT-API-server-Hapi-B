@@ -23,7 +23,8 @@ exports.LastBlock= async (req, h) => {
         }
         
         exports.getBlockByHash = async (req, h) => {
-            const hash = req.body.hash;
+            
+            const hash = req.params.hash;
             return connectApi.then(api => api.rpc.chain.getBlock(hash));
         }
         
