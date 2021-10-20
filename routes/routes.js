@@ -12,110 +12,86 @@ exports.plugin = {
         server.route({
             method: 'GET',
             path: '/api/node/blocks',
-            handler: function (request, h) {
-
-                return apis.LastBlock();
-            }
+            handler: apis.LastBlock
+            
         });
 
         server.route({
             method: 'GET',
             path: '/api/node/blocks/num/:number',
-            handler: function (request, h) {
-
-                return apis.getBlockHashByNumber;
-            }
+            handler:apis.getBlockHashByNumber
+            
         });
         
         server.route({
             method: 'POST',
             path: '/api/node/blocks/hash',
-            handler: function (request, h) {
-
-                return apis.getBlockByHash;
-            }
+            handler: apis.getBlockByHash
+        
         });
 
         server.route({
             method: 'GET',
             path: '/api/node/blocks/:x/:n',
-            handler: function (request, h) {
-
-                return apis.getXBlocksAfterN;
-            }
+            handler: apis.getXBlocksAfterN
+            
         });
 
         server.route({
             method: 'GET',
             path: '/api/node/accounts/count/',
-            handler: function (request, h) {
-
-                return apis.getAccountsCount;
-            }
+            handler: apis.getAccountsCount
+            
         });
 
         server.route({
             method: 'GET',
             path: '/api/node/address/transactions/count/:address',
-            handler: function (request, h) {
-
-                return apis.getAccountTransactionsCount;
-            }
+            handler: apis.getAccountTransactionsCount
+            
         });
 
 
         server.route({
             method: 'GET',
             path: '/api/node/address/transactions/:address',
-            handler: function (request, h) {
-
-                return apis.getAccountTransactions;
-            }
+            handler: apis.getAccountTransactions
+            
         });
 
         server.route({
             method: 'GET',
             path: '/api/node/address/balance/:address',
-            handler: function (request, h) {
-
-                return apis.getAccountBalance;
-            }
+            handler: apis.getAccountBalance
+            
         });
 
         server.route({
             method: 'GET',
             path: '/api/node/transactions/:x/:n',
-            handler: function (request, h) {
-
-                return apis.getXTransactionsAfterNth;
-            }
+            handler: apis.getXTransactionsAfterNth
+            
         });
 
         server.route({
             method: 'GET',
             path: '/api/node/transactions/count',
-            handler: function (request, h) {
-
-                return apis.getTransactionsCount;
-            }
+            handler: apis.getTransactionsCount
+            
         });
 
         server.route({
             method: 'GET',
             path: '/api/node/transactions/block',
-            handler: function (request, h) {
-
-                return apis.getTransactionsFromBlock;
-            }
+            handler: apis.getTransactionsFromBlock
+            
         });
 
         server.route({
             method: 'POST',
             path: '/api/node/transactions/hash',
-            handler: function (request, h) {
-
-                return apis.getTransactionByHash;
-            }
+            handler: apis.getTransactionByHash
+            
         });
        
        
