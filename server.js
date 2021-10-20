@@ -1,7 +1,7 @@
 'use strict';
 
 const Hapi = require('@hapi/hapi');
-
+ require('./websockets')
 
 
 const init = async () => {

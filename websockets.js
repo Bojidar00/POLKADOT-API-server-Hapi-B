@@ -1,7 +1,7 @@
 const webSocketsServerPort = 8000;
 const webSocketServer = require('websocket').server;
 const http = require('http');
-const apis = require('../modules/Apis');
+const apis = require('./modules/Apis');
 
 // Spinning the http server and the websocket server
 const server = http.createServer();
@@ -34,11 +34,11 @@ wsServer.on('request', function (request) {
 
             switch (msg.method) {
                 case 'rpc_getLastBlock':
-                    client.send(api.getLastBlock());
+                    client.send(apis.getLastBlock());
                     
                     break;
                 case 'rpc_getBlockHashByNumber':
-                    client.send(api.getBlockByNumber(msg.params.num));
+                    client.send(apis.getBlockByNumber(msg.params.num));
                    
                     break;
                 case 'rpc_getXBlocksAfterN':
