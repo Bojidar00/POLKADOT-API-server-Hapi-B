@@ -6,7 +6,7 @@ jestOpenAPI(swaggerDocument);
 
 describe('GET api/node/blocks', () => {
     it('should satisfy OpenAPI spec', async() => {
-        const res = await axios.get('http://0.0.0.0:8080/api/node/blocks/');
+        const res = await axios.get('http://0.0.0.0:8080/api/node/blocks');
   
         expect(res.status).toEqual(200);
   
