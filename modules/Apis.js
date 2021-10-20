@@ -47,27 +47,27 @@ exports.LastBlock= async (req, h) => {
         }
     
         exports.getAccountsCount = async (req, h) => {
-            connectDb.then(db => {
+           
 
-            const result = await db.query(`SELECT COUNT(DISTINCT recipient)+COUNT(DISTINCT sender) AS count FROM transactions`);
-            return result?.rows;});
+            const result = await connectDb.query(`SELECT COUNT(DISTINCT recipient)+COUNT(DISTINCT sender) AS count FROM transactions`);
+            return result?.rows;
         }
         
         exports.getAccountTransactionsCount = async (req, h) => {
             const address = req.params.address;
 
-            connectDb.then(db => {
-            const result = await db.query(`SELECT COUNT(*) AS count FROM transactions WHERE sender='${address}' OR recipient='${address}'`);
+            
+            const result = await connectDb.query(`SELECT COUNT(*) AS count FROM transactions WHERE sender='${address}' OR recipient='${address}'`);
             return result?.rows;
-            });
+            
         }
         
         exports.getAccountTransactions = async (req, h) => {
             const address = req.params.address;
 
-            connectDb.then(db => {
-            const result = await db.query(`SELECT * FROM transactions WHERE recipient='${address}' OR sender='${address}'`);
-            return result?.rows;});
+            
+            const result = await connectDb.query(`SELECT * FROM transactions WHERE recipient='${address}' OR sender='${address}'`);
+            return result?.rows;
         }
         
         exports.getAccountBalance = async (req, h) => {
@@ -77,31 +77,31 @@ exports.LastBlock= async (req, h) => {
             return connectApi.then(api => api.query.system.account(address));
         }
         exports.getTransactionsCount = async (req, h) => {
-            connectDb.then(db => {
-            result = await db.query(`SELECT COUNT(*) AS count FROM transactions`);
-            return  result?.rows;});
+          
+            result = await connectDb.query(`SELECT COUNT(*) AS count FROM transactions`);
+            return  result?.rows;
         }
         
         exports.getTransactionsFromBlock = async (req, h) => {
             const hash = req.params.hash;
 
-            connectDb.then(db => {
-            const result = await db.query(`SELECT * FROM transactions WHERE block_hash='${hash}'`);
-            return result?.rows;});
+            
+            const result = await connectDb.query(`SELECT * FROM transactions WHERE block_hash='${hash}'`);
+            return result?.rows;
         }
         
         exports.getTransactionByHash = async (req, h) => {
             const hash = req.params.hash;
-            connectDb.then(db => {
-            const result = await db.query(`SELECT * FROM transactions WHERE hash='${hash}'`);
-            return result?.rows;});
+          
+            const result = await connectDb.query(`SELECT * FROM transactions WHERE hash='${hash}'`);
+            return result?.rows;
         }
         
         exports.getXTransactionsAfterNth = async (req, h) => {
             const x = req.params?.x;
             const n = req.params?.n;
-            connectDb.then(db => {
-            const result = await db.query(`SELECT * FROM transactions WHERE id < ${n} AND id > ${n} - ${x} LIMIT ${x}`);
-            return result?.rows;});
+            
+            const result = await connectDb.query(`SELECT * FROM transactions WHERE id < ${n} AND id > ${n} - ${x} LIMIT ${x}`);
+            return result?.rows;
         }
         
