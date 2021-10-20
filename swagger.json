@@ -1,0 +1,588 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Polkadot server API",
+    "description": "Polkadot Api for interact interacting with node",
+    "contact": {
+      "name": "Ahmet",
+      "email": "ahmedovv123@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/Bojidar00/Test/1.0.0",
+      "description": "SwaggerHub API Auto Mocking"
+    }
+  ],
+  "paths": {
+    "/api/node/blocks/": {
+      "get": {
+        "tags": [
+          "Blocks"
+        ],
+        "summary": "get address balance",
+        "description": "get last block",
+        "responses": {
+          "200": {
+            "description": "Last block",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Block"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "failure fetching last block"
+          }
+        }
+      }
+    },
+    "/api/node/blocks/{x}/{nth}": {
+      "get": {
+        "tags": [
+          "Blocks"
+        ],
+        "summary": "Get X blocks after N-th block from new to old",
+        "description": "Get X blocks after N-th block from new to old",
+        "parameters": [
+          {
+            "name": "x",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 5
+          },
+          {
+            "name": "nth",
+            "in": "path",
+            "description": "number of block",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1512532
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "failure fetching the block"
+          }
+        }
+      }
+    },
+    "/api/node/blocks/num/{num}": {
+      "get": {
+        "tags": [
+          "Blocks"
+        ],
+        "summary": "get block by number",
+        "description": "get single block providing number",
+        "parameters": [
+          {
+            "name": "num",
+            "in": "path",
+            "description": "number of block",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1512531
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Block with number",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "failure fetching the block"
+          }
+        }
+      }
+    },
+    "/api/node/blocks/hash": {
+      "post": {
+        "tags": [
+          "Blocks"
+        ],
+        "summary": "Get block by hash",
+        "description": "Get block by hash",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "example": "0x4f61e8e6017cce5a10e2de7340061a037895411c19e7bc27f607953d8a56a943"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Block by hash",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "failure fetching block"
+          }
+        }
+      }
+    },
+    "/api/node/accounts/count/": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "get account count",
+        "description": "get account count from db",
+        "responses": {
+          "200": {
+            "description": "Accounts count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "failure fetching accounts count"
+          }
+        }
+      }
+    },
+    "/api/node/address/transactions/{x}/{n}": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "get address X transactions from Nth",
+        "description": "get address X transactions from Nth",
+        "parameters": [
+          {
+            "name": "n",
+            "in": "path",
+            "description": "account nth transaction",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 10
+          },
+          {
+            "name": "x",
+            "in": "path",
+            "description": "transaction count",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 5
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "example": "12xtAYsRUrmbniiWQqJtECiBQrMn8AypQcXhnQAc6RB6XkLW"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Transactions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failure fetching transactions"
+          }
+        }
+      }
+    },
+    "/api/node/address/transactions/count/{adr}": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "get address transactions count",
+        "description": "get address transactions count from db",
+        "parameters": [
+          {
+            "name": "adr",
+            "in": "path",
+            "description": "id of account",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "1743nDTMZisPgBCYSAgkUn1kVG7MePc9rvMEjoRNf4ipVkF"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Transactions count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failure fetching transactions count"
+          }
+        }
+      }
+    },
+    "/api/node/address/transactions/{adr}": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "get address transactions",
+        "description": "get address transactions from db",
+        "parameters": [
+          {
+            "name": "adr",
+            "in": "path",
+            "description": "id of account",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "1743nDTMZisPgBCYSAgkUn1kVG7MePc9rvMEjoRNf4ipVkF"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Transactions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failure fetching transactions"
+          }
+        }
+      }
+    },
+    "/api/node/address/balance/{adr}": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "summary": "get address balance",
+        "description": "get balance of an address from node",
+        "parameters": [
+          {
+            "name": "adr",
+            "in": "path",
+            "description": "id of account",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "1743nDTMZisPgBCYSAgkUn1kVG7MePc9rvMEjoRNf4ipVkF"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Balance of address",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "failure fetching balance of address"
+          }
+        }
+      }
+    },
+    "/api/node/transactions/count/": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "get all transactions count",
+        "description": "get all transactions count",
+        "responses": {
+          "200": {
+            "description": "Transactions count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "failure fetching Transactions count"
+          }
+        }
+      }
+    },
+    "/api/node/transactions/block": {
+      "post": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get block transactions",
+        "description": "Get block transactions",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "example": "0x527dbeb44ff53d4a805d72e1350ad76fd6e86116a1ba34c6d058f752bcc5db36"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Block transactions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "failure fetching block transactions"
+          }
+        }
+      }
+    },
+    "/api/node/transactions/hash": {
+      "post": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get transaction by hash",
+        "description": "Get transaction by hash",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string",
+                "example": "0x2261184f6bd42eb775f2a55477ce65e7d710a535a8c9da98441908bc2ba87170"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Transaction",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "failure fetching transaction"
+          }
+        }
+      }
+    },
+    "/api/node/transactions/{x}/{n}": {
+      "get": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Get X transactions after Nth from new to old",
+        "description": "Get X transactions after Nth from new to old",
+        "parameters": [
+          {
+            "name": "x",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 5
+          },
+          {
+            "name": "n",
+            "in": "path",
+            "description": "transaction index from db",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "x transactions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "failure fetching transactions"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Block": {
+        "type": "object",
+        "properties": {
+          "header": {
+            "$ref": "#/components/schemas/Block_header"
+          }
+        }
+      },
+      "Block_header_digest_logs": {
+        "type": "object",
+        "properties": {
+          "preRuntime": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "seal": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Block_header_digest": {
+        "type": "object",
+        "properties": {
+          "logs": {
+            "$ref": "#/components/schemas/Block_header_digest_logs"
+          }
+        }
+      },
+      "Block_header": {
+        "type": "object",
+        "properties": {
+          "parentHash": {
+            "type": "string"
+          },
+          "number": {
+            "type": "number"
+          },
+          "stateRoot": {
+            "type": "string"
+          },
+          "extrinsicsRoot": {
+            "type": "string"
+          },
+          "digest": {
+            "$ref": "#/components/schemas/Block_header_digest"
+          },
+          "extrinsics": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "justifications": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
