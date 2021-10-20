@@ -1,5 +1,5 @@
-import jestOpenAPI from 'jest-openapi';
-import axios from 'axios';
+const axios = require('axios');
+const jestOpenAPI = require('jest-openapi')
 
 const swaggerDocument = require('./swagger.json');
 jestOpenAPI(swaggerDocument);
