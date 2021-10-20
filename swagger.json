@@ -13,6 +13,10 @@
     {
       "url": "https://virtserver.swaggerhub.com/Bojidar00/Test/1.0.0",
       "description": "SwaggerHub API Auto Mocking"
+    },
+    {
+      "url": "https://0.0.0.0",
+      "description": "local environment"
     }
   ],
   "paths": {

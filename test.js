@@ -1,12 +1,12 @@
 const axios = require('axios');
-const jestOpenAPI = require('jest-openapi')
+const jestOpenAPI = require('jest-openapi').default
 
 const swaggerDocument = require('./swagger.json');
 jestOpenAPI(swaggerDocument);
 
 describe('GET api/node/blocks', () => {
     it('should satisfy OpenAPI spec', async() => {
-        const res = await axios.get('http://0.0.0.0:8080/api/node/blocks/');
+        const res = await axios.get('http://192.168.0.102:8080/api/node/blocks/');
   
         expect(res.status).toEqual(200);
   
