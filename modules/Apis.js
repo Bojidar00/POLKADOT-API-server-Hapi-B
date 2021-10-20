@@ -2,14 +2,16 @@
 const apiConnection = require('../nodeConnection')
 const dbConnection = require('../dbConnection')
 
-
+const connectApi = apiConnection.getNodeConnection().then((api) => {
+    return api;
+  });
  /* const connectDb = dbConnection.getDbConnection().then((db) => {
     db.connect().then(console.log("Connected to PostgreSQL from Server"));
     return db;
-});*/
+});  */
 exports.LastBlock= async (req, h) => {
            
-               return await apiConnection.getNodeConnection().then((api) => { api.rpc.chain.getBlock();});
+               return await connectApi.then(api => api.rpc.chain.getBlock());
           
         }
 
