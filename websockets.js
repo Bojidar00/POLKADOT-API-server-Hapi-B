@@ -4,6 +4,7 @@ const http = require('http');
 const apis = require('./modules/Apis');
 
 // Spinning the http server and the websocket server
+exports.run=() => {
 const server = http.createServer();
 server.listen(webSocketsServerPort);
 console.log('listening on port 8000')
@@ -72,4 +73,5 @@ wsServer.on('request', function (request) {
         }
     })
 })
+}
 
