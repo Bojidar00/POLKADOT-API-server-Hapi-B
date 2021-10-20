@@ -18,7 +18,7 @@ exports.plugin = {
 
         server.route({
             method: 'GET',
-            path: '/api/node/blocks/num/:number',
+            path: '/api/node/blocks/num/{number}',
             handler:apis.getBlockHashByNumber
             
         });
@@ -32,7 +32,7 @@ exports.plugin = {
 
         server.route({
             method: 'GET',
-            path: '/api/node/blocks/:x/:n',
+            path: '/api/node/blocks/{x}/{n}',
             handler: apis.getXBlocksAfterN
             
         });
@@ -46,7 +46,7 @@ exports.plugin = {
 
         server.route({
             method: 'GET',
-            path: '/api/node/address/transactions/count/:address',
+            path: '/api/node/address/transactions/count/{address}',
             handler: apis.getAccountTransactionsCount
             
         });
@@ -54,21 +54,21 @@ exports.plugin = {
 
         server.route({
             method: 'GET',
-            path: '/api/node/address/transactions/:address',
+            path: '/api/node/address/transactions/{address}',
             handler: apis.getAccountTransactions
             
         });
 
         server.route({
             method: 'GET',
-            path: '/api/node/address/balance/:address',
+            path: '/api/node/address/balance/{address}',
             handler: apis.getAccountBalance
             
         });
 
         server.route({
             method: 'GET',
-            path: '/api/node/transactions/:x/:n',
+            path: '/api/node/transactions/{x}/{n}',
             handler: apis.getXTransactionsAfterNth
             
         });
