@@ -42,7 +42,7 @@ describe('GET api/node/blocks', () => {
 
 describe('POST /api/node/blocks/hash', () => {
   it('should satisfy OpenAPI spec', async() => {
-      const queryParam = { hash: '0xc0828364897c2b7f7df6091fd357ebb0f94645eb5dea6f9a0c2b5fd164c9e849' };
+      const queryParam = { hash: '0xc0096358534ec8d21d01d34b836eed476a1c343f8724fa2153dc0725ad797a90' };
 
       const res = await axios.post('http://0.0.0.0:8080/api/node/blocks/hash', queryParam);
 
