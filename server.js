@@ -23,7 +23,8 @@ const init = async () => {
    
     await server.start();
     console.log('Server running on %s', server.info.uri);
-    websocket.run();
+    //websocket.run();
+    require('./websocket');
 };
 
 process.on('unhandledRejection', (err) => {
