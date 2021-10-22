@@ -27,3 +27,15 @@ describe('GET api/node/blocks', () => {
         expect(res).toSatisfyApiSpec();
     });
   });
+
+  describe('GET /api/node/blocks/num/{num}', () => {
+    it('should satisfy OpenAPI spec', async() => {
+        const num = '1000';
+
+        const res = await axios.get(`http://0.0.0.0:8080/api/node/blocks/num/${num}`);
+
+        expect(res.status).toEqual(200);
+
+        expect(res).toSatisfyApiSpec();
+    });
+});

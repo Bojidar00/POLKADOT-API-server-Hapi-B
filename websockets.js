@@ -42,8 +42,14 @@ wsServer.on('request', function (request) {
                     
                     break;
                 case 'rpc_getBlockHashByNumber':
-                    console.log(msg.params)
+                    
                     res =await apis.getBlockHashByNumber(msg.params.num);
+                    
+                   
+                    break;
+                case 'rpc_getBlockByHash':
+                    
+                    res =await apis.getBlockHashByNumber(msg.params.hash);
                     
                    
                     break;
