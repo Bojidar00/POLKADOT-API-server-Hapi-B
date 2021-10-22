@@ -35,7 +35,7 @@ wsServer.on('request', function (request) {
             client.send('aaa');
             switch (msg.method) {
                 case 'rpc_getLastBlock':
-                    var res =await apis.LastBlock();
+                    var res =apis.LastBlock();
                     console.log(res);
                     client.send(res);
                     
