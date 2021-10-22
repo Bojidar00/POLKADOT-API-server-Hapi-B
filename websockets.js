@@ -35,7 +35,7 @@ wsServer.on('request', function (request) {
             client.send('aaa');
             switch (msg.method) {
                 case 'rpc_getLastBlock':
-                    client.send(JSON.stringify(apis.LastBlock()));
+                    client.send(JSON.parse(apis.LastBlock()));
                     
                     break;
                 case 'rpc_getBlockHashByNumber':
