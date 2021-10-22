@@ -32,46 +32,58 @@ wsServer.on('request', function (request) {
             return;
         }
         if (message.type === 'utf8') {
-            client.send('aaa');
+            var res;
             switch (msg.method) {
+                
                 case 'rpc_getLastBlock':
-                    var res =await apis.LastBlock();
-                    console.log(res);
-                    client.send(res);
+                    res =await apis.LastBlock();
+                    
+                    
                     
                     break;
                 case 'rpc_getBlockHashByNumber':
-                    client.send(JSON.stringify(apis.getBlockHashByNumber(msg.params.num)));
+                    res =await apis.getBlockHashByNumber(msg.params.num);
+                    
                    
                     break;
-                /*case 'rpc_getXBlocksAfterN':
-                    websocketController.getXBlocksAfterN(client, msg.params.x, msg.params.n);
+                case 'rpc_getXBlocksAfterN':
+                    res = await apis.getXBlocksAfterN(msg.params.x, msg.params.n);
+                   
                     break;
                 case 'rpc_getAccountsCount':
-                    websocketController.getAccountsCount(client);
+                    res = await apis.getAccountsCount();
+                   
                     break;
                 case 'rpc_getAddressTransactionsCount':
-                    websocketController.getAddressTransactionsCount(client, msg.params.accountId);
+                    res = await apis.getAccountTransactionsCount(msg.params.accountId);
+                    
                     break;
                 case 'rpc_getAddressTransactions':
-                    websocketController.getAddressTransactions(client, msg.params.accountId);
+                    res = await apis.getAccountTransactions(msg.params.accountId);
+                    
                     break;
                 case 'rpc_getAccountBalance':
-                    websocketController.getAccountBalance(client, msg.params.accountId.toString())
+                    res = await apis.getAccountBalance(msg.params.accountId);
+                   
                     break;
                 case 'rpc_getTransactionsCount':
-                    websocketController.getTransactionsCount(client);
+                    res = await apis.getTransactionsCount();
+                    
                     break;
                 case 'rpc_getTransactionsFromBlock':
-                    websocketController.getTransactionsFromBlock(client, msg.params.blockHash);
+                    res = await apis.getTransactionsFromBlock(msg.params.blockHas);
+                    
                     break;
                 case 'rpc_getTransactionByHash':
-                    websocketController.getTransactionByHash(client, msg.params.transactionHash);
+                    res = await apis.getTransactionByHash(msg.params.transactionHash);
+                    
                     break;
                 case 'rpc_getXTransactionsAfterN':
-                    websocketController.getXtransactionsAfterN(client, parseInt(msg.params.x), msg.params.n)
+                    res = await apis.getXTransactionsAfterNth(msg.params.x,msg.params.n);
+                    
                     break;
-            */}
+            }
+            client.send(res);
         }
     })
 })
