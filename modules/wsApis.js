@@ -9,7 +9,7 @@ const connectApi = apiConnection.getNodeConnection().then((api) => {
     db.connect().then(console.log("Connected to PostgreSQL from Server"));
     return db;
 });  
-       exports.LastBlock= async (req, h) => {
+       exports.LastBlock= async () => {
            
                return await connectApi.then(api => api.rpc.chain.getBlock())
           
@@ -17,20 +17,19 @@ const connectApi = apiConnection.getNodeConnection().then((api) => {
 
         
 
-        exports.getBlockHashByNumber = async (req, h) => {
-            const number = req.params.number;
+        exports.getBlockHashByNumber = async (number) => {
+           
             return connectApi.then(api => api.rpc.chain.getBlockHash(number));
         }
         
-        exports.getBlockByHash = async (req, h) => {
+        exports.getBlockByHash = async (hash) => {
             
-            const hash = req.body.hash;
+           
             return connectApi.then(api => api.rpc.chain.getBlock(hash));
         }
         
-        exports.getXBlocksAfterN = async (req, h) => {
-            const x = req.params.x;
-            const n = req.params.n;
+        exports.getXBlocksAfterN = async (x,n) => {
+         
         
             return connectApi.then( async api => {
                 let i = 1;
@@ -47,15 +46,15 @@ const connectApi = apiConnection.getNodeConnection().then((api) => {
         
         }
     
-        exports.getAccountsCount = async (req, h) => {
+        exports.getAccountsCount = async () => {
            
 
             const result = await connectDb.query(`SELECT COUNT(DISTINCT recipient)+COUNT(DISTINCT sender) AS count FROM transactions`);
             return result?.rows;
         }
         
-        exports.getAccountTransactionsCount = async (req, h) => {
-            const address = req.params.address;
+        exports.getAccountTransactionsCount = async (address) => {
+            
 
             
             const result = await connectDb.query(`SELECT COUNT(*) AS count FROM transactions WHERE sender='${address}' OR recipient='${address}'`);
@@ -63,44 +62,43 @@ const connectApi = apiConnection.getNodeConnection().then((api) => {
             
         }
         
-        exports.getAccountTransactions = async (req, h) => {
-            const address = req.params.address;
+        exports.getAccountTransactions = async (address) => {
+         
 
             
             const result = await connectDb.query(`SELECT * FROM transactions WHERE recipient='${address}' OR sender='${address}'`);
             return result?.rows;
         }
         
-        exports.getAccountBalance = async (req, h) => {
-            const address = req.params.address;
+        exports.getAccountBalance = async (address) => {
+          
 
             
             return connectApi.then(api => api.query.system.account(address));
         }
-        exports.getTransactionsCount = async (req, h) => {
+        exports.getTransactionsCount = async () => {
           
             result = await connectDb.query(`SELECT COUNT(*) AS count FROM transactions`);
             return  result?.rows;
         }
         
-        exports.getTransactionsFromBlock = async (req, h) => {
-            const hash = req.params.hash;
+        exports.getTransactionsFromBlock = async (hash) => {
+            
 
             
             const result = await connectDb.query(`SELECT * FROM transactions WHERE block_hash='${hash}'`);
             return result?.rows;
         }
         
-        exports.getTransactionByHash = async (req, h) => {
-            const hash = req.params.hash;
+        exports.getTransactionByHash = async (hash) => {
+         
           
             const result = await connectDb.query(`SELECT * FROM transactions WHERE hash='${hash}'`);
             return result?.rows;
         }
         
-        exports.getXTransactionsAfterNth = async (req, h) => {
-            const x = req.params?.x;
-            const n = req.params?.n;
+        exports.getXTransactionsAfterNth = async (x,n) => {
+           
             
             const result = await connectDb.query(`SELECT * FROM transactions WHERE id < ${n} AND id > ${n} - ${x} LIMIT ${x}`);
             return result?.rows;
