@@ -18,7 +18,7 @@ services:
       - 9933:9933 # rpc port
       - 9944:9944 # ws port
     volumes:
-      - nodedata:/home/nodedata
+      - nodedata:/home/nodedata:Z
     
     command: [
       "--rpc-methods", "Unsafe",
