@@ -44,7 +44,7 @@ describe('POST /api/node/blocks/hash', () => {
   it('should satisfy OpenAPI spec', async() => {
       const queryParam = { hash: '0x4f61e8e6017cce5a10e2de7340061a037895411c19e7bc27f607953d8a56a943' };
 
-      const res = await axios.post('http://node1.blackseachain.com:8080/api/node/blocks/hash', queryParam);
+      const res = await axios.post('http://0.0.0.0:8080/api/node/blocks/hash', queryParam);
 
       expect(res.status).toEqual(200);
 
