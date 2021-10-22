@@ -23,7 +23,7 @@ wsServer.on('request', function (request) {
     const connection = request.accept(null, request.origin);
     client = connection;
 
-    connection.on('message', function (message) {
+    connection.on('message',async function (message) {
         let msg;
         try {
             msg = JSON.parse(message.utf8Data);
@@ -35,7 +35,7 @@ wsServer.on('request', function (request) {
             client.send('aaa');
             switch (msg.method) {
                 case 'rpc_getLastBlock':
-                    var res =apis.LastBlock();
+                    var res =await apis.LastBlock();
                     console.log(res);
                     client.send(res);
                     
