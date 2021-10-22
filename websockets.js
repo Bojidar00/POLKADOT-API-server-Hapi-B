@@ -1,7 +1,7 @@
 const webSocketsServerPort = 8000;
 const webSocketServer = require('websocket').server;
 const http = require('http');
-const apis = require('./modules/Apis');
+//const apis = require('./modules/Apis');
 
 // Spinning the http server and the websocket server
 
@@ -32,13 +32,13 @@ wsServer.on('request', function (request) {
             return;
         }
         if (message.type === 'utf8') {
-
+            client.send('aaa');
             switch (msg.method) {
                 case 'rpc_getLastBlock':
-                    client.send(apis.getLastBlock());
+                    client.send(JSON.stringify(apis.getLastBlock()));
                     
                     break;
-                case 'rpc_getBlockHashByNumber':
+                /*case 'rpc_getBlockHashByNumber':
                     client.send(apis.getBlockByNumber(msg.params.num));
                    
                     break;
@@ -69,7 +69,7 @@ wsServer.on('request', function (request) {
                 case 'rpc_getXTransactionsAfterN':
                     websocketController.getXtransactionsAfterN(client, parseInt(msg.params.x), msg.params.n)
                     break;
-            }
+            */}
         }
     })
 })
