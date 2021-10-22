@@ -18,11 +18,11 @@ services:
       - 9933:9933 # rpc port
       - 9944:9944 # ws port
     volumes:
-      - nodedata:/home/nodedata:Z
+      - nodedata:nodedata
     
     command: [
       "--rpc-methods", "Unsafe",
-      "--base-path", /home/nodedata,
+      "--base-path", nodedata,
       "--name", "PolkaNodeQuanterall",
       "--rpc-cors", "all",
       "--ws-external",
