@@ -1,7 +1,7 @@
 'use strict';
 
 const Hapi = require('@hapi/hapi');
-const websocket = require('./websockets')
+
 
 
 const init = async () => {
@@ -24,7 +24,7 @@ const init = async () => {
     await server.start();
     console.log('Server running on %s', server.info.uri);
     //websocket.run();
-    require('./websocket');
+    require('./websockets');
 };
 
 process.on('unhandledRejection', (err) => {
