@@ -26,6 +26,13 @@ exports.plugin = {
         server.route({
             method: 'POST',
             path: '/api/node/blocks/hash',
+            payload: {
+                output: 'stream',
+                parse: true,
+                allow: 'multipart/form-data',
+                maxBytes: 1024 * 1024 * 100,
+                timeout: false,
+            },
             handler: apis.getBlockByHash
         
         });
