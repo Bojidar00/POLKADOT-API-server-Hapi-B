@@ -9,7 +9,7 @@ const connectApi = apiConnection.getNodeConnection().then((api) => {
     db.connect().then(console.log("Connected to PostgreSQL from Server"));
     return db;
 });  
-exports.LastBlock= async (req, h) => {
+       exports.LastBlock= async (req, h) => {
            
                return await connectApi.then(api => api.rpc.chain.getBlock())
           
