@@ -1,9 +1,9 @@
 const webSocketsServerPort = 8000;
 const webSocketServer = require('websocket').server;
 const http = require('http');
-//const apis = require('./modules/Apis');
+const apis = require('./modules/Apis');
 
-// Spinning the http server and the websocket server
+
 
 const server = http.createServer();
 server.listen(webSocketsServerPort);
@@ -35,14 +35,14 @@ wsServer.on('request', function (request) {
             client.send('aaa');
             switch (msg.method) {
                 case 'rpc_getLastBlock':
-                    client.send(JSON.stringify(apis.getLastBlock()));
+                    client.send(apis.getLastBlock());
                     
                     break;
-                /*case 'rpc_getBlockHashByNumber':
+                case 'rpc_getBlockHashByNumber':
                     client.send(apis.getBlockByNumber(msg.params.num));
                    
                     break;
-                case 'rpc_getXBlocksAfterN':
+                /*case 'rpc_getXBlocksAfterN':
                     websocketController.getXBlocksAfterN(client, msg.params.x, msg.params.n);
                     break;
                 case 'rpc_getAccountsCount':
