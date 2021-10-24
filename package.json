@@ -20,10 +20,12 @@
     "@hapi/hapi": "^20.2.1",
     "@polkadot/api": "^6.4.2",
     "axios": "^0.23.0",
+    "express": "^4.17.1",
     "jest": "^27.3.1",
     "jest-openapi": "^0.14.1",
     "pg": "^8.7.1",
     "swagger-ui": "^3.52.5",
+    "swagger-ui-express": "^4.1.6",
     "websocket": "^1.0.34"
   }
 }
