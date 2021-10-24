@@ -2,8 +2,8 @@
 
 const Hapi = require('@hapi/hapi');
 const indexer = require('./modules/indexer');
-const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
+
+
 
 
 
