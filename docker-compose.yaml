@@ -13,7 +13,7 @@ services:
 
    polkadot-node: 
     image: parity/polkadot
-    container_name: polkadot-node-container
+    container_name: polkadot-node-container-hapi
     ports: 
       - 30333:30333 # p2p port
       - 9933:9933 # rpc port
@@ -33,7 +33,7 @@ services:
 
    db-PostgreSQL:
      image: postgres:12-alpine
-     container_name: postgreSql-container
+     container_name: postgreSql-container-hapi
      environment:
       - POSTGRES_DB=polkadot_explorer
       - POSTGRES_USER=postgres

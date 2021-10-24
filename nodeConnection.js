@@ -6,7 +6,7 @@ const getNodeConnection = async () => {
 
     if(api) return api;
   
-    const provider = new WsProvider('ws://polkadot-node-container:9944');
+    const provider = new WsProvider('ws://polkadot-node-container-hapi:9944');
 
     api = await ApiPromise.create({ provider });
     
