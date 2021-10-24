@@ -35,10 +35,11 @@ const init = async () => {
               scope: 'query', // header works as well
               // valuePrefix: 'bearer '// prefix incase
               defaultValue: 'demoKey',
-              placeholder: 'Enter your apiKey here'
+              placeholder: 'Enter your apiKey here',
+              endpoint: "./swagger.json"
             },
             swaggerOptions: {
-                endpoint: "./swagger.json"
+                
             } 
           }
         }
