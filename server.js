@@ -1,6 +1,9 @@
 'use strict';
 
 const Hapi = require('@hapi/hapi');
+const indexer = require('./modules/indexer');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 
 
@@ -19,12 +22,21 @@ const init = async () => {
             return 'Hello World!';
         }
     });
+    server.route({
+        method: 'GET',
+        path: '/swagger',
+        handler: (request, h) => {
+            swaggerUi.setup(swaggerDocument);
+            return swaggerUi.serve();
+        }
+    });
     await server.register(require('./routes/routes'));
    
     await server.start();
     console.log('Server running on %s', server.info.uri);
-    //websocket.run();
+   
     require('./websockets');
+    indexer.run();
 };
 
 process.on('unhandledRejection', (err) => {
