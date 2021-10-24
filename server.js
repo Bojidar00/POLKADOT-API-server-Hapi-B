@@ -36,8 +36,9 @@ const init = async () => {
               // valuePrefix: 'bearer '// prefix incase
               defaultValue: 'demoKey',
               placeholder: 'Enter your apiKey here',
-              endpoint: "./swagger.json"
+             
             },
+            endpoint: "./swagger.json",
             swaggerOptions: {
                 
             } 
