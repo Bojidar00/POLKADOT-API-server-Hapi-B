@@ -37,7 +37,9 @@ const init = async () => {
               defaultValue: 'demoKey',
               placeholder: 'Enter your apiKey here'
             },
-            swaggerOptions: {} // see above
+            swaggerOptions: {
+                endpoint: "./swagger.json"
+            } 
           }
         }
       ])
