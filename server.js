@@ -22,29 +22,7 @@ const init = async () => {
             return 'Hello World!';
         }
     });
-    await server.register([
-        require('inert'),
-        require('vision'),
-        {
-          plugin: require('hapi-swaggered-ui'),
-          options: {
-            title: 'Example API',
-            path: '/docs',
-            authorization: { // see above
-              field: 'apiKey',
-              scope: 'query', // header works as well
-              // valuePrefix: 'bearer '// prefix incase
-              defaultValue: 'demoKey',
-              placeholder: 'Enter your apiKey here',
-             
-            },
-            endpoint: "./swagger.json",
-            swaggerOptions: {
-                
-            } 
-          }
-        }
-      ])
+    
     await server.register(require('./routes/routes'));
    
     await server.start();
