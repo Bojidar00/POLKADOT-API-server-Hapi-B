@@ -89,6 +89,7 @@ wsServer.on('request', function (request) {
                     res = await apis.getXTransactionsAfterNth(msg.params.x,msg.params.n);
                     
                     break;
+                default: res ="Invalid request!";
             }
             client.send(res);
         }
