@@ -24,7 +24,7 @@ const init = async () => {
     });
     
     await server.register(require('./routes/routes'));
-    server.connection({ routes: { cors: true } });
+    
     await server.start();
     console.log('Server running on %s', server.info.uri);
    
